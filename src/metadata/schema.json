@@ -55,7 +55,7 @@
                 },
                 {
                     "name": "testCases",
-                    "type": "String",
+                    "type": "JSON",
                     "info": "A valid JSON, which on parse should result in a list of strings.",
                     "required": true,
                     "vendorSchema": {
@@ -93,7 +93,8 @@
                             "source",
                             "testcases",
                             "wait",
-                            "callback_url"
+                            "callback_url",
+                            "lang"
                         ]
                     }
                 ]

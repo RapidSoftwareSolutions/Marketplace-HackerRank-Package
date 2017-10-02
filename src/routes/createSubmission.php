@@ -15,7 +15,7 @@ $app->post('/api/HackerRank/createSubmission', function ($request, $response) {
     $requiredParams = ['apiKey'=>'api_key','sourceCode'=>'source','language'=>'lang','testCases'=>'testcases'];
     $optionalParams = ['wait'=>'wait','callbackUrl'=>'callback_url'];
     $bodyParams = [
-       'form_params' => ['api_key','source','testcases','wait','callback_url']
+       'form_params' => ['api_key','source','testcases','wait','callback_url','lang']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
@@ -25,7 +25,7 @@ $app->post('/api/HackerRank/createSubmission', function ($request, $response) {
     $client = $this->httpClient;
     $query_str = "https://api.hackerrank.com/checker/submission.json";
 
-    
+    $data['testcases'] = json_encode($data['testcases']);
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
