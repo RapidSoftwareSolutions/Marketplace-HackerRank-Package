@@ -1,0 +1,133 @@
+{
+    "package": "HackerRank",
+    "tagline": "HackerRank API",
+    "description": "The HackerRank team is on a mission to match every developer in the world to the right job by providing a technical recruiting platform that assesses developers based on actual coding skills. Our solution is revolutionizing the way companies discover and evaluate talented developers. HackerRank is the destination for the best developers to hone their skills and for companies to find top software developers.",
+    "image": "https:\/\/logo.clearbit.com\/www.hackerrank.com",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-HackerRank-Package",
+    "keywords": [
+        "API",
+        "Development",
+        "Code",
+        "Sourcing",
+        "Skills"
+    ],
+    "accounts": {
+        "domain": "www.hackerrank.com",
+        "credentials": [
+            "apiKey"
+        ]
+    },
+    "steps": [
+        "Register on the www.hackerrank.com",
+        "After registration, you will receive apiKey in api section https:\/\/www.hackerrank.com\/api\/docs"
+    ],
+    "blocks": [
+        {
+            "name": "createSubmission",
+            "description": "Allows users to use the HackerRank code checker for their own purposes. Submit source code, which is compiled and run against a list of provided test cases.",
+            "args": [
+                {
+                    "name": "apiKey",
+                    "type": "credentials",
+                    "info": "Your HackerRank API key.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "api_key"
+                    }
+                },
+                {
+                    "name": "sourceCode",
+                    "type": "String",
+                    "info": "The source code, which needs to be compiled and run against the provided test cases.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "source"
+                    }
+                },
+                {
+                    "name": "language",
+                    "type": "String",
+                    "info": "The language key for the language, the submission is made in. The data about language keys is available through the languages endpoint.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "lang"
+                    }
+                },
+                {
+                    "name": "testCases",
+                    "type": "String",
+                    "info": "A valid JSON, which on parse should result in a list of strings.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "testcases"
+                    }
+                },
+                {
+                    "name": "wait",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "`true` - The response is sent only after the submission is compiled and run.`false` - The request returns immediately and submission response will posted through the callback URL.",
+                    "required": false
+                },
+                {
+                    "name": "callbackUrl",
+                    "type": "String",
+                    "info": "A callback url, on which the submission response will be posted as a JSON string under `data` parameter.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "callback_url"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.hackerrank.com\/checker\/submission.json",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "form_params",
+                        "parameters": [
+                            "api_key",
+                            "source",
+                            "testcases",
+                            "wait",
+                            "callback_url"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getProgrammingLanguages",
+            "description": "This method provides you with information regarding the language codes which our code checker supports.",
+            "args": [],
+            "vendorRequest": {
+                "url": "http:\/\/api.hackerrank.com\/checker\/languages.json",
+                "method": "get",
+                "requestParameters": []
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        }
+    ]
+}
