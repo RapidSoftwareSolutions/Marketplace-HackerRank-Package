@@ -21,6 +21,43 @@
         "Register on the www.hackerrank.com",
         "After registration, you will receive apiKey in api section https:\/\/www.hackerrank.com\/api\/docs"
     ],
+    "events":[
+        {
+            "name":"webhookEvent",
+            "description":"A webhook, on which the submission response will be posted as a JSON string under `data` parameter.",
+            "payload":{
+            "callback_url": "http://eac1b5a8.ngrok.io",
+            "censored_compile_message": "",
+            "codechecker_hash": "run-5PzrSLSC1RhKxU1UcW60",
+            "compile_command": "python -mpy_compile solution.py 1> compile.err 2>&1",
+            "compilemessage": "",
+            "error_code": 0,
+            "hash": "1507029215-429824773",
+            "loopback": null,
+            "memory": [8142848],
+            "message": ["Success"],
+            "response_s3_path": "2017_10_03_11/8usVzgGKoeAvZInNmf42haCJd13Mq5XcryUxPl9L7bDEpFYR0Q59d370df3aa165.92409362",
+            "result": 0,
+            "run_command": "",
+            "server": "ip-10-10-173-248",
+            "signal": [0],
+            "stderr": [""],
+            "stdout": ["1\n"],
+            "time": [0]
+            },
+            "steps":[
+                "In createSubmission method set callback url in callbackUrl field to __WEBHOOK_URL__"
+            ],
+            "args":[
+                {
+                    "name":"apiKey",
+                    "type":"String",
+                    "info":"Your HackerRank API key.",
+                    "required":false
+                }
+            ]
+        }
+    ],
     "blocks": [
         {
             "name": "createSubmission",
